@@ -1,0 +1,53 @@
+<div class="container">
+  <p-card header="IranMap"
+          subheader="IranMap is used to show a selectable iran map."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disabled',
+      'disableConfigChangeEffect',
+      'selectionLimit',
+      'multiple',
+      'async'
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disabled)]="disabled"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(selectionLimit)]="selectionLimit"
+      [(multiple)]="multiple"
+      [(async)]="async"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-iran-map
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disabled]="disabled"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [selectionLimit]="selectionLimit"
+        [multiple]="multiple"
+        [async]="async"
+        (onChangeAsync)="onChangeAsync($event)"
+      ></ng-iran-map>
+    </form>
+  </p-panel>
+</div>

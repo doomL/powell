@@ -1,0 +1,10 @@
+<div ngConfigHandler [(rtl)]="rtl" [ngClass]="{'rtl': rtl}">
+  <p-breadcrumb
+    [style]="style"
+    [styleClass]="styleClass"
+    [home]="home"
+    [homeAriaLabel]="homeAriaLabel"
+    [model]="breadcrumbs$ | async"
+    (onItemClick)="_onItemClick($event)">
+  </p-breadcrumb>
+</div>

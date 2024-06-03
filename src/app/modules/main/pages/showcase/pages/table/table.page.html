@@ -1,0 +1,80 @@
+<div class="container">
+  <p-card header="Table"
+          subheader="Table displays data in tabular format."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'rtl',
+      'selectiveSize',
+      'header',
+      'disableConfigChangeEffect',
+      'gridlines',
+      'striped'
+      ]"
+      [(rtl)]="rtl"
+      [(selectiveSize)]="size"
+      [(header)]="header"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(gridlines)]="gridlines"
+      [(striped)]="striped"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel header="Simple">
+    <ng-table
+      [items]="simpleCustomers"
+      [colDef]="simpleColDef"
+      [actionsConfig]="actionsConfig"
+      [rtl]="rtl"
+      [size]="size"
+      [header]="header"
+      [disableConfigChangeEffect]="disableConfigChangeEffect"
+      [gridlines]="gridlines"
+      [striped]="striped">
+      <ng-template ngTemplate="activity" let-item>
+        <span>Rendered by template: {{item.activity}}</span>
+      </ng-template>
+    </ng-table>
+  </p-panel>
+
+  <p-panel header="Local Paginator">
+    <ng-table
+      [items]="simpleCustomers"
+      [colDef]="paginatorColDef"
+      [size]="size"
+      [rtl]="rtl"
+      [actionsConfig]="actionsConfig"
+      [header]="header"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      responsiveLayout="scroll"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10,25,50]">
+    </ng-table>
+  </p-panel>
+
+  <p-panel header="Lazy">
+    <ng-table
+      [items]="customers"
+      [colDef]="lazyColDef"
+      [size]="size"
+      [rtl]="rtl"
+      [actionsConfig]="actionsConfig"
+      [header]="header"
+      [lazy]="true"
+      responsiveLayout="scroll"
+      dataKey="id"
+      [selection]="selectedCustomers"
+      [selectAll]="selectAll"
+      [paginator]="true"
+      [rows]="10"
+      [totalRecords]="totalRecords"
+      [globalFilter]="true"
+      [globalFilterFields]="['name','country.name', 'company', 'representative.name']"
+      (onLazyLoad)="loadCustomers($event)"
+      (selectionChange)="onSelectionChange($event)"
+      (selectAllChange)="onSelectAllChange($event)">
+    </ng-table>
+  </p-panel>
+</div>

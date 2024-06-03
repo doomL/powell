@@ -1,0 +1,96 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(fixLabelPos)]="labelPos"
+     [(filled)]="filled"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
+    }" class="listbox-wrapper">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled">
+    <div>
+      <p-listbox
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [id]="id"
+        [searchMessage]="searchMessage"
+        [emptySelectionMessage]="emptySelectionMessage"
+        [selectionMessage]="selectionMessage"
+        [autoOptionFocus]="autoOptionFocus"
+        [selectOnFocus]="selectOnFocus"
+        [searchLocale]="searchLocale"
+        [focusOnHover]="focusOnHover"
+        [filterMessage]="filterMessage"
+        [filterFields]="filterFields"
+        [lazy]="lazy"
+        [virtualScroll]="virtualScroll"
+        [virtualScrollItemSize]="virtualScrollItemSize"
+        [virtualScrollOptions]="virtualScrollOptions"
+        [scrollHeight]="scrollHeight"
+        [tabindex]="tabindex"
+        [multiple]="multiple"
+        [style]="style"
+        [styleClass]="styleClass"
+        [listStyle]="listStyle"
+        [listStyleClass]="listStyleClass"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [checkbox]="checkbox"
+        [filter]="filter"
+        [filterBy]="filterBy"
+        [filterMatchMode]="filterMatchMode"
+        [filterLocale]="filterLocale"
+        [metaKeySelection]="metaKeySelection"
+        [dataKey]="dataKey"
+        [showToggleAll]="showToggleAll"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionGroupChildren]="optionGroupChildren"
+        [optionGroupLabel]="optionGroupLabel"
+        [optionDisabled]="optionDisabled"
+        [ariaFilterLabel]="ariaFilterLabel"
+        [filterPlaceHolder]="filterPlaceHolder"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [emptyMessage]="emptyMessage"
+        [group]="group"
+        [options]="options"
+        [filterValue]="filterValue"
+        [selectAll]="selectAll"
+        (onChange)="_onChange($event)"
+        (onClick)="_onClick($event)"
+        (onDblClick)="_onDblClick($event)"
+        (onFilter)="emitter('onFilter', $event)"
+        (onFocus)="emitter('onFocus', $event)"
+        (onBlur)="emitter('onBlur', $event)"
+        (onSelectAllChange)="emitter('onSelectAllChange', $event)">
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-index="index" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options,index}"></ng-container>
+          </ng-template>
+        </ng-container>
+      </p-listbox>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [attr.for]="id"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container">
+  <p-card header="Dropdown"
+          subheader="Dropdown is used to select an item from a list of options."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'addon',
+      'selectiveSize',
+      'async',
+      'disableConfigChangeEffect',
+      'filter',
+      'disabled',
+      'readonly',
+      'emptyMessage',
+      'emptyFilterMessage',
+      'editable',
+      'maxlength',
+      'placeholder',
+      'autofocusFilter',
+      'resetFilterOnHide',
+      'autoDisplayFirst',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(async)]="async"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(addon)]="addon"
+      [(filter)]="filter"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(emptyMessage)]="emptyMessage"
+      [(emptyFilterMessage)]="emptyFilterMessage"
+      [(editable)]="editable"
+      [(maxlength)]="maxlength"
+      [(placeholder)]="placeholder"
+      [(autofocusFilter)]="autofocusFilter"
+      [(resetFilterOnHide)]="resetFilterOnHide"
+      [(autoDisplayFirst)]="autoDisplayFirst"
+      [(showClear)]="showClear"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-dropdown
+        formControlName="c1"
+        [addon]="addon"
+        [validation]="{ required: 'error' }"
+        [options]="options"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [async]="async"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [filter]="filter"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [editable]="editable"
+        [maxlength]="maxlength"
+        [placeholder]="placeholder"
+        [autofocusFilter]="autofocusFilter"
+        [resetFilterOnHide]="resetFilterOnHide"
+        [autoDisplayFirst]="autoDisplayFirst"
+        [showClear]="showClear"
+        (onChangeAsync)="onChangeAsync($event)"
+      ></ng-dropdown>
+    </form>
+  </p-panel>
+</div>

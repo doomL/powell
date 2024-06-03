@@ -1,0 +1,61 @@
+<div class="container">
+  <p-card header="Slider"
+          subheader="Slider is an input component to provide a numerical input."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'animate',
+      'disabled',
+      'min',
+      'max',
+      'orientation',
+      'step',
+      'range',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(animate)]="animate"
+      [(disabled)]="disabled"
+      [(min)]="min"
+      [(max)]="max"
+      [(orientation)]="orientation"
+      [(step)]="step"
+      [(range)]="range"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-slider
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [animate]="animate"
+        [disabled]="disabled"
+        [min]="min"
+        [max]="max"
+        [orientation]="orientation"
+        [step]="step"
+        [range]="range"
+      ></ng-slider>
+    </form>
+  </p-panel>
+</div>

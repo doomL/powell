@@ -1,0 +1,33 @@
+<div class="container">
+  <p-card header="Status"
+          subheader="Status used to feed back the results of a series of operational tasks."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'status',
+      'icon',
+      'text',
+      'subText',
+      'rtl',
+      'disableConfigChangeEffect'
+      ]"
+      [(status)]="status"
+      [(icon)]="icon"
+      [(text)]="text"
+      [(subText)]="subText"
+      [(rtl)]="rtl"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-status
+      [status]="status"
+      [icon]="icon"
+      [text]="text"
+      [subText]="subText"
+      [rtl]="rtl"
+      [disableConfigChangeEffect]="disableConfigChangeEffect"
+    ></ng-status>
+  </p-panel>
+</div>

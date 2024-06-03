@@ -1,0 +1,61 @@
+<div class="container">
+  <p-card header="Rating"
+          subheader="Rating component is a star based selection input."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'stars',
+      'cancel',
+      'disabled',
+      'readonly',
+      'iconOnClass',
+      'iconOffClass',
+      'iconCancelClass',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(stars)]="stars"
+      [(cancel)]="cancel"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(iconOnClass)]="iconOnClass"
+      [(iconOffClass)]="iconOffClass"
+      [(iconCancelClass)]="iconCancelClass"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-rating
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [stars]="stars"
+        [cancel]="cancel"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [iconOnClass]="iconOnClass"
+        [iconOffClass]="iconOffClass"
+        [iconCancelClass]="iconCancelClass"
+      ></ng-rating>
+    </form>
+  </p-panel>
+</div>

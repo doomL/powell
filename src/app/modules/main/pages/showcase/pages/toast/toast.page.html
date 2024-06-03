@@ -1,0 +1,34 @@
+<div class="container">
+  <p-card header="Toast"
+          subheader="Toast is used to display messages in an overlay."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'life',
+      'sticky',
+      'rtl',
+      'summary',
+      'closable',
+      'severity',
+      'icon',
+      'detail',
+      'preventDuplicates',
+      'toastPosition',
+      ]"
+      [(life)]="toast.life"
+      [(sticky)]="toast.sticky"
+      [(rtl)]="toast.rtl"
+      [(summary)]="toast.summary"
+      [(closable)]="toast.closable"
+      [(severity)]="toast.severity"
+      [(icon)]="toast.icon"
+      [(detail)]="toast.detail"
+      [(preventDuplicates)]="toast.preventDuplicates"
+      [(toastPosition)]="toast.position"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button (click)="showToast()" label="Open Toast"></ng-button>
+  </p-panel>
+</div>

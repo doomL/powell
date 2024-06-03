@@ -1,0 +1,88 @@
+<div class="container">
+  <p-card header="InputMask"
+          subheader="InputMask component is used to enter input in a certain format such as numeric, date, currency and phone."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'addon',
+      'selectiveSize',
+      'disableConfigChangeEffect',
+      'mask',
+      'slotChar',
+      'autoClear',
+      'unmask',
+      'placeholder',
+      'numericSize',
+      'maxlength',
+      'disabled',
+      'readonly',
+      'characterPattern',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(addon)]="addon"
+      [(mask)]="mask"
+      [(slotChar)]="slotChar"
+      [(autoClear)]="autoClear"
+      [(unmask)]="unmask"
+      [(placeholder)]="placeholder"
+      [(numericSize)]="size"
+      [(maxlength)]="maxlength"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(characterPattern)]="characterPattern"
+      [(showClear)]="showClear"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-input-mask
+        formControlName="c1"
+        [addon]="addon"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [mask]="mask"
+        [slotChar]="slotChar"
+        [autoClear]="autoClear"
+        [unmask]="unmask"
+        [placeholder]="placeholder"
+        [size]="size"
+        [maxlength]="maxlength"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [characterPattern]="characterPattern"
+        [showClear]="showClear"
+      ></ng-input-mask>
+    </form>
+  </p-panel>
+</div>

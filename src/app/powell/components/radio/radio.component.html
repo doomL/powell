@@ -1,0 +1,58 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(fixLabelPos)]="labelPos"
+     [(filled)]="filled"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'layout-horizontal':orientation == 'horizontal',
+      'layout-vertical':orientation == 'vertical',
+      'p-input-filled': filled
+    }" class="radio-wrapper">
+  <div [attr.id]="id" class="field">
+    <div *ngFor="let item of options" class="option-item">
+      <p-radioButton
+        [(ngModel)]="value"
+        [ngClass]="{'ng-invalid ng-dirty': isInvalid()}"
+        [name]="groupName"
+        [tabindex]="tabindex"
+        [inputId]="'id' + item[optionValue]"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaLabel]="ariaLabel"
+        [style]="style"
+        [styleClass]="styleClass"
+        [labelStyleClass]="labelStyleClass"
+        [disabled]="item[optionDisabled]"
+        [class]="item.styleClass"
+        [value]="item[optionValue]"
+        (onClick)="_onChange($event)"
+        (onBlur)="_onBlur($event)"
+        (onFocus)="_onFocus($event)"
+      ></p-radioButton>
+      <label [attr.for]="'id' + item[optionValue]" [class.p-disabled]="disabled || item[optionDisabled]">
+        {{ item[optionLabel] }}
+      </label>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [attr.for]="id"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

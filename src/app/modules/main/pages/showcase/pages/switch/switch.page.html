@@ -1,0 +1,50 @@
+<div class="container">
+  <p-card header="InputSwitch"
+          subheader="InputSwitch is used to select a boolean value."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'disabled',
+      'readonly',
+      'async',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(async)]="async"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-switch
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [async]="async"
+        (onChangeAsync)="onChangeAsync($event)"
+      ></ng-switch>
+    </form>
+  </p-panel>
+</div>

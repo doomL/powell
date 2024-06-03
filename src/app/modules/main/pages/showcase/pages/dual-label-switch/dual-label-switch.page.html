@@ -1,0 +1,52 @@
+<div class="container">
+  <p-card header="InputSwitch"
+          subheader="InputSwitch is used to select a boolean value."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disabled',
+      'readonly',
+      'async',
+      'disableConfigChangeEffect',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(async)]="async"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-dual-label-switch
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [async]="async"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        labelLeft="Left"
+        labelRight="Right"
+        (onChangeAsync)="onChangeAsync($event)"
+      ></ng-dual-label-switch>
+    </form>
+  </p-panel>
+</div>

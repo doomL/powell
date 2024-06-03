@@ -1,0 +1,30 @@
+<div class="container">
+  <p-card header="Empty"
+          subheader="Empty is a empty state placeholder."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'imageType',
+      'icon',
+      'text',
+      'rtl',
+      'disableConfigChangeEffect',
+      ]"
+      [(imageType)]="imageType"
+      [(icon)]="icon"
+      [(text)]="text"
+      [(rtl)]="rtl"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-empty
+      [imageType]="imageType"
+      [icon]="icon"
+      [text]="text"
+      [rtl]="rtl"
+      [disableConfigChangeEffect]="disableConfigChangeEffect"
+    ></ng-empty>
+  </p-panel>
+</div>

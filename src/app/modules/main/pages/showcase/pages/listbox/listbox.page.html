@@ -1,0 +1,69 @@
+<div class="container">
+  <p-card header="Listbox"
+          subheader="Listbox is used to select one or more values from a list of items."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'addon',
+      'disableConfigChangeEffect',
+      'checkbox',
+      'disabled',
+      'filter',
+      'filterPlaceHolder',
+      'emptyFilterMessage',
+      'multiple',
+      'readonly',
+      'emptyMessage',
+      'showToggleAll',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(addon)]="addon"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(checkbox)]="checkbox"
+      [(disabled)]="disabled"
+      [(filter)]="filter"
+      [(filterPlaceHolder)]="filterPlaceHolder"
+      [(emptyFilterMessage)]="emptyFilterMessage"
+      [(multiple)]="multiple"
+      [(readonly)]="readonly"
+      [(emptyMessage)]="emptyMessage"
+      [(showToggleAll)]="showToggleAll"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-listbox
+        formControlName="c1"
+        [addon]="addon"
+        [validation]="{ required: 'error' }"
+        [options]="options"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [labelPos]="labelPos"
+        [checkbox]="checkbox"
+        [disabled]="disabled"
+        [filter]="filter"
+        [filterPlaceHolder]="filterPlaceHolder"
+        [emptyFilterMessage]="emptyFilterMessage"
+        [multiple]="multiple"
+        [readonly]="readonly"
+        [emptyMessage]="emptyMessage"
+        [showToggleAll]="showToggleAll"
+      ></ng-listbox>
+    </form>
+  </p-panel>
+</div>

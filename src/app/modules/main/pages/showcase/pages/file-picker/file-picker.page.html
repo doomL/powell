@@ -1,0 +1,88 @@
+<div class="container">
+  <p-card header="FilePicker"
+          subheader="FilePicker is an advanced uploader with drag and drop support, multi file uploads, auto uploading, progress tracking and validations."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'multiple',
+      'accept',
+      'disabled',
+      'auto',
+      'maxFileSize',
+      'fileLimit',
+      'previewWidth',
+      'chooseLabel',
+      'uploadLabel',
+      'cancelLabel',
+      'chooseIcon',
+      'uploadIcon',
+      'cancelIcon',
+      'filePickerMode',
+      'showUploadButton',
+      'showCancelButton',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(multiple)]="multiple"
+      [(accept)]="accept"
+      [(disabled)]="disabled"
+      [(auto)]="auto"
+      [(maxFileSize)]="maxFileSize"
+      [(fileLimit)]="fileLimit"
+      [(previewWidth)]="previewWidth"
+      [(chooseLabel)]="chooseLabel"
+      [(uploadLabel)]="uploadLabel"
+      [(cancelLabel)]="cancelLabel"
+      [(chooseIcon)]="chooseIcon"
+      [(uploadIcon)]="uploadIcon"
+      [(cancelIcon)]="cancelIcon"
+      [(filePickerMode)]="mode"
+      [(showUploadButton)]="showUploadButton"
+      [(showCancelButton)]="showCancelButton"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-file-picker
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [multiple]="multiple"
+        [accept]="accept"
+        [disabled]="disabled"
+        [auto]="auto"
+        [maxFileSize]="maxFileSize"
+        [fileLimit]="fileLimit"
+        [previewWidth]="previewWidth"
+        [chooseLabel]="chooseLabel"
+        [uploadLabel]="uploadLabel"
+        [cancelLabel]="cancelLabel"
+        [chooseIcon]="chooseIcon"
+        [uploadIcon]="uploadIcon"
+        [cancelIcon]="cancelIcon"
+        [mode]="mode"
+        [showUploadButton]="showUploadButton"
+        [showCancelButton]="showCancelButton"
+      ></ng-file-picker>
+    </form>
+  </p-panel>
+</div>

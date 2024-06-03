@@ -1,0 +1,88 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(fixLabelPos)]="labelPos"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
+    }" class="tree-wrapper">
+  <div class="field" [ngAddon]="addon">
+    <div>
+      <p-tree
+        [attr.id]="id"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [value]="items"
+        [selectionMode]="selectionMode"
+        [selection]="selection"
+        [style]="style"
+        [styleClass]="styleClass"
+        [contextMenu]="contextMenu"
+        [layout]="layout"
+        [draggableScope]="draggableScope"
+        [droppableScope]="droppableScope"
+        [draggableNodes]="draggableNodes"
+        [droppableNodes]="droppableNodes"
+        [metaKeySelection]="metaKeySelection"
+        [propagateSelectionUp]="propagateSelectionUp"
+        [propagateSelectionDown]="propagateSelectionDown"
+        [loading]="loading"
+        [loadingIcon]="loadingIcon"
+        [emptyMessage]="emptyMessage"
+        [ariaLabel]="ariaLabel"
+        [togglerAriaLabel]="togglerAriaLabel"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [validateDrop]="validateDrop"
+        [filter]="filter"
+        [filterBy]="filterBy"
+        [filterMode]="filterMode"
+        [filterPlaceholder]="filterPlaceholder"
+        [filteredNodes]="filteredNodes"
+        [filterLocale]="filterLocale"
+        [scrollHeight]="scrollHeight"
+        [lazy]="lazy"
+        [virtualScroll]="virtualScroll"
+        [virtualScrollItemSize]="virtualScrollItemSize"
+        [virtualScrollOptions]="virtualScrollOptions"
+        [indentation]="indentation"
+        [_templateMap]="_templateMap"
+        [trackBy]="trackBy"
+        [virtualNodeHeight]="virtualNodeHeight"
+        (selectionChange)="_onSelectionChange($event)"
+        (onNodeSelect)="emitter('onNodeSelect',$event)"
+        (onNodeUnselect)="emitter('onNodeUnselect',$event)"
+        (onNodeExpand)="emitter('onNodeExpand', $event)"
+        (onNodeCollapse)="emitter('onNodeCollapse', $event)"
+        (onNodeContextMenuSelect)="emitter('onNodeContextMenuSelect', $event)"
+        (onNodeDrop)="emitter('onNodeDrop', $event)"
+        (onLazyLoad)="emitter('onLazyLoad', $event)"
+        (onScroll)="emitter('onScroll', $event)"
+        (onScrollIndexChange)="emitter('onScrollIndexChange', $event)"
+        (onFilter)="emitter('onFilter', $event)">
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item let-options="options" let-partialSelected="partialSelected" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,options,partialSelected}"></ng-container>
+          </ng-template>
+        </ng-container>
+      </p-tree>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [attr.for]="id"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

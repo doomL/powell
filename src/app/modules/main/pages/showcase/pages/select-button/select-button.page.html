@@ -1,0 +1,47 @@
+<div class="container">
+  <p-card header="SelectButton"
+          subheader="SelectButton is a form component to choose a value from a list of options using button elements."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'multiple',
+      'disabled',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(multiple)]="multiple"
+      [(disabled)]="disabled"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-select-button
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [options]="options"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [multiple]="multiple"
+        [disabled]="disabled"
+      ></ng-select-button>
+    </form>
+  </p-panel>
+</div>

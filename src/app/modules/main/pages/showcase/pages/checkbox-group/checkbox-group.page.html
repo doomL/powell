@@ -1,0 +1,53 @@
+<div class="container">
+  <p-card header="Checkbox"
+          subheader="Checkbox is an extension to standard checkbox element with theming."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'orientation',
+      'disabled',
+      'readonly',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(orientation)]="orientation"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-checkbox-group
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [options]="options"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [orientation]="orientation"
+        [disabled]="disabled"
+        [readonly]="readonly"
+      ></ng-checkbox-group>
+    </form>
+  </p-panel>
+</div>

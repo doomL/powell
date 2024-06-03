@@ -1,0 +1,64 @@
+<div class="container">
+  <p-card header="DialogForm"
+          subheader="DialogForm is a container to display form in an overlay window."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'header',
+      'draggable',
+      'resizable',
+      'modal',
+      'dialogPosition',
+      'blockScroll',
+      'closeOnEscape',
+      'dismissableMask',
+      'closable',
+      'showHeader',
+      'maximizable',
+      'buttonFull',
+      'buttonSize',
+      'acceptAppearance',
+      'acceptColor',
+      'acceptVisible',
+      'acceptLabel',
+      'acceptIcon',
+      'rejectAppearance',
+      'rejectColor',
+      'rejectVisible',
+      'rejectLabel',
+      'rejectIcon',
+      'defaultFocus',
+      'rtl',
+      ]"
+      [(header)]="dialogForm.header"
+      [(draggable)]="dialogForm.draggable"
+      [(resizable)]="dialogForm.resizable"
+      [(modal)]="dialogForm.modal"
+      [(dialogPosition)]="dialogForm.position"
+      [(blockScroll)]="dialogForm.blockScroll"
+      [(closeOnEscape)]="dialogForm.closeOnEscape"
+      [(dismissableMask)]="dialogForm.dismissableMask"
+      [(closable)]="dialogForm.closable"
+      [(showHeader)]="dialogForm.showHeader"
+      [(maximizable)]="dialogForm.maximizable"
+      [(buttonFull)]="dialogForm.buttonFull"
+      [(buttonSize)]="dialogForm.buttonSize"
+      [(acceptAppearance)]="dialogForm.acceptAppearance"
+      [(acceptColor)]="dialogForm.acceptColor"
+      [(acceptVisible)]="dialogForm.acceptVisible"
+      [(acceptLabel)]="dialogForm.acceptLabel"
+      [(acceptIcon)]="dialogForm.acceptIcon"
+      [(rejectAppearance)]="dialogForm.rejectAppearance"
+      [(rejectColor)]="dialogForm.rejectColor"
+      [(rejectVisible)]="dialogForm.rejectVisible"
+      [(rejectLabel)]="dialogForm.rejectLabel"
+      [(rejectIcon)]="dialogForm.rejectIcon"
+      [(defaultFocus)]="dialogForm.defaultFocus"
+      [(rtl)]="dialogForm.rtl"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button label="Open Dialog Form" (click)="showDialogForm()"></ng-button>
+  </p-panel>
+</div>

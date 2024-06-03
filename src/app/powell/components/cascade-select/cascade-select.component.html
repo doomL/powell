@@ -1,0 +1,101 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(labelPos)]="labelPos"
+     [(filled)]="filled"
+     [(inputSize)]="inputSize"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
+    }" class="cascade-select-wrapper">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       [addonSize]="inputSize">
+    <div [ngClass]="{
+      'p-float-label': label && labelPos == 'float',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
+      'p-inputtext-sm': inputSize == 'sm',
+      'p-inputtext-lg': inputSize == 'lg',
+      'p-input-filled': filled
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-cascadeSelect
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [id]="id"
+        [selectOnFocus]="selectOnFocus"
+        [searchMessage]="searchMessage"
+        [emptyMessage]="emptyMessage"
+        [selectionMessage]="selectionMessage"
+        [emptySearchMessage]="emptySearchMessage"
+        [emptySelectionMessage]="emptySelectionMessage"
+        [searchLocale]="searchLocale"
+        [optionDisabled]="optionDisabled"
+        [autoOptionFocus]="autoOptionFocus"
+        [styleClass]="styleClass"
+        [style]="style"
+        [options]="options"
+        [optionLabel]="optionLabel"
+        [optionValue]="optionValue"
+        [optionGroupLabel]="optionGroupLabel"
+        [optionGroupChildren]="optionGroupChildren"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [dataKey]="dataKey"
+        [inputId]="inputId"
+        [tabindex]="tabindex"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [inputLabel]="inputLabel"
+        [ariaLabel]="ariaLabel"
+        [appendTo]="appendTo"
+        [disabled]="disabled"
+        [showClear]="showClear"
+        [panelStyleClass]="panelStyleClass"
+        [panelStyle]="panelStyle"
+        [overlayOptions]="overlayOptions"
+        [showTransitionOptions]="showTransitionOptions"
+        [hideTransitionOptions]="hideTransitionOptions"
+        (onChange)="_onChange($event)"
+        (onGroupChange)="emitter('onGroupChange', $event)"
+        (onShow)="emitter('onShow', $event)"
+        (onHide)="emitter('onHide', $event)"
+        (onClear)="_onClear()"
+        (onBeforeShow)="emitter('onBeforeShow', $event)"
+        (onBeforeHide)="emitter('onBeforeHide', $event)"
+        (onFocus)="emitter('onFocus', $event)"
+        (onBlur)="emitter('onBlur', $event)">
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" let-item let-placeholder="placeholder" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item,placeholder}"></ng-container>
+          </ng-template>
+        </ng-container>
+      </p-cascadeSelect>
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
+      </label>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

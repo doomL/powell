@@ -1,0 +1,61 @@
+<div class="container">
+  <p-card header="Button"
+          subheader="Button is an extension to standard button element with icons and theming."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'icon',
+      'full',
+      'badge',
+      'rounded',
+      'raised',
+      'appearance',
+      'disabled',
+      'iconPos',
+      'color',
+      'badgeColor',
+      'selectiveSize',
+      'async',
+      'newLabel',
+      'newColor',
+      ]"
+      [(label)]="label"
+      [(icon)]="icon"
+      [(full)]="full"
+      [(badge)]="badge"
+      [(rounded)]="rounded"
+      [(raised)]="raised"
+      [(appearance)]="appearance"
+      [(disabled)]="disabled"
+      [(iconPos)]="iconPos"
+      [(color)]="color"
+      [(badgeColor)]="badgeColor"
+      [(selectiveSize)]="size"
+      [(async)]="async"
+      [(newLabel)]="newLabel"
+      [(newColor)]="newColor"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button
+      [label]="label"
+      [icon]="icon"
+      [full]="full"
+      [badge]="badge"
+      [rounded]="rounded"
+      [raised]="raised"
+      [appearance]="appearance"
+      [disabled]="disabled"
+      [iconPos]="iconPos"
+      [color]="color"
+      [badgeColor]="badgeColor"
+      [size]="size"
+      [async]="async"
+      [newLabel]="newLabel"
+      [newColor]="newColor"
+      (onClickAsync)="onClickAsync($event)">
+    </ng-button>
+  </p-panel>
+</div>

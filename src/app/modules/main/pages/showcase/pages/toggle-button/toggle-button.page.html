@@ -1,0 +1,58 @@
+<div class="container">
+  <p-card header="ToggleButton"
+          subheader="ToggleButton is used to select a boolean value using a button."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'onLabel',
+      'offLabel',
+      'onIcon',
+      'offIcon',
+      'iconPos',
+      'disabled',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(onLabel)]="onLabel"
+      [(offLabel)]="offLabel"
+      [(onIcon)]="onIcon"
+      [(offIcon)]="offIcon"
+      [(iconPos)]="iconPos"
+      [(disabled)]="disabled"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-toggle-button
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [labelPos]="labelPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [onLabel]="onLabel"
+        [offLabel]="offLabel"
+        [onIcon]="onIcon"
+        [offIcon]="offIcon"
+        [iconPos]="iconPos"
+        [disabled]="disabled"
+      ></ng-toggle-button>
+    </form>
+  </p-panel>
+</div>

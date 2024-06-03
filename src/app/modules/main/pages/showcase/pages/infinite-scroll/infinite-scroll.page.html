@@ -1,0 +1,14 @@
+<div class="container">
+  <p-card header="InfiniteScroll"
+          subheader="InfiniteScroll is a container to implement infinitely loading data."></p-card>
+  <p-panel [header]="'preview' | translate">
+    <ng-infinite-scroll [data]="list" (scrolled)="onScroll($event)">
+      <ng-template ngTemplate="content" let-item let-i="index">
+        <p>{{i + 1}} - {{item}}</p>
+      </ng-template>
+      <ng-template ngTemplate="loading">
+        <i class="pi pi-spinner pi-spin h3"></i>
+      </ng-template>
+    </ng-infinite-scroll>
+  </p-panel>
+</div>

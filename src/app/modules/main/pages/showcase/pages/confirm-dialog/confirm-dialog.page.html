@@ -1,0 +1,54 @@
+<div class="container">
+  <p-card header="ConfirmDialog"
+          subheader="ConfirmDialog is backed by a service utilizing Observables to display confirmation windows easily that can be shared by multiple actions on the same component."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'closable',
+      'icon',
+      'header',
+      'acceptLabel',
+      'rejectLabel',
+      'acceptIcon',
+      'rejectIcon',
+      'acceptVisible',
+      'rejectVisible',
+      'acceptColor',
+      'acceptAppearance',
+      'buttonSize',
+      'rejectColor',
+      'rejectAppearance',
+      'closeOnEscape',
+      'dismissableMask',
+      'buttonFull',
+      'defaultFocus',
+      'blockScroll',
+      'rtl'
+      ]"
+      [(closable)]="confirmDialog.closable"
+      [(icon)]="confirmDialog.icon"
+      [(header)]="confirmDialog.header"
+      [(acceptLabel)]="confirmDialog.acceptLabel"
+      [(rejectLabel)]="confirmDialog.rejectLabel"
+      [(acceptIcon)]="confirmDialog.acceptIcon"
+      [(rejectIcon)]="confirmDialog.rejectIcon"
+      [(acceptVisible)]="confirmDialog.acceptVisible"
+      [(rejectVisible)]="confirmDialog.rejectVisible"
+      [(acceptColor)]="confirmDialog.acceptColor"
+      [(acceptAppearance)]="confirmDialog.acceptAppearance"
+      [(buttonSize)]="confirmDialog.buttonSize"
+      [(rejectColor)]="confirmDialog.rejectColor"
+      [(rejectAppearance)]="confirmDialog.rejectAppearance"
+      [(closeOnEscape)]="confirmDialog.closeOnEscape"
+      [(dismissableMask)]="confirmDialog.dismissableMask"
+      [(buttonFull)]="confirmDialog.buttonFull"
+      [(defaultFocus)]="confirmDialog.defaultFocus"
+      [(blockScroll)]="confirmDialog.blockScroll"
+      [(rtl)]="confirmDialog.rtl"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button (click)="showConfirmDialog()" label="Open Confirm Dialog"></ng-button>
+  </p-panel>
+</div>

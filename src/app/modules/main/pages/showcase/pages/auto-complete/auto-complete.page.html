@@ -1,0 +1,97 @@
+<div class="container">
+  <p-card header="AutoComplete"
+          subheader="AutoComplete is an input component that provides real-time suggestions when being typed."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'addon',
+      'selectiveSize',
+      'disableConfigChangeEffect',
+      'scrollHeight',
+      'dropdown',
+      'multiple',
+      'minlength',
+      'placeholder',
+      'readonly',
+      'disabled',
+      'maxlength',
+      'showEmptyMessage',
+      'emptyMessage',
+      'forceSelection',
+      'unique',
+      'showClear',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(selectiveSize)]="inputSize"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(addon)]="addon"
+      [(scrollHeight)]="scrollHeight"
+      [(dropdown)]="dropdown"
+      [(multiple)]="multiple"
+      [(minlength)]="minlength"
+      [(placeholder)]="placeholder"
+      [(readonly)]="readonly"
+      [(disabled)]="disabled"
+      [(maxlength)]="maxlength"
+      [(showEmptyMessage)]="showEmptyMessage"
+      [(emptyMessage)]="emptyMessage"
+      [(forceSelection)]="forceSelection"
+      [(unique)]="unique"
+      [(showClear)]="showClear"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-auto-complete
+        formControlName="c1"
+        [addon]="addon"
+        [validation]="{ required: 'error' }"
+        field="name"
+        [suggestions]="filteredSuggestions"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [inputSize]="inputSize"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [scrollHeight]="scrollHeight"
+        [dropdown]="dropdown"
+        [multiple]="multiple"
+        [minlength]="minlength"
+        [placeholder]="placeholder"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [maxlength]="maxlength"
+        [showEmptyMessage]="showEmptyMessage"
+        [emptyMessage]="emptyMessage"
+        [forceSelection]="forceSelection"
+        [unique]="unique"
+        [showClear]="showClear"
+        (completeMethod)="filter($event)"
+      ></ng-auto-complete>
+    </form>
+  </p-panel>
+</div>

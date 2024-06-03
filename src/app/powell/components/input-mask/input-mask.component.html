@@ -1,0 +1,91 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(labelPos)]="labelPos"
+     [(filled)]="filled"
+     [(inputSize)]="inputSize"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side',
+      'label-float': labelPos == 'float',
+      'clearable': showClear
+    }" class="input-mask-wrapper">
+  <div class="field"
+       [ngAddon]="addon"
+       [addonDisabled]="disabled"
+       [addonSize]="inputSize">
+    <div [ngClass]="{
+      'p-float-label': label && labelPos == 'float',
+      'p-input-icon-left': icon && iconPos == 'left',
+      'p-input-icon-right': icon && iconPos == 'right',
+      'p-inputtext-sm': inputSize == 'sm',
+      'p-inputtext-lg': inputSize == 'lg',
+      'p-input-filled': filled
+    }">
+      <i *ngIf="icon" [class.p-disabled]="disabled" [ngClass]="icon"></i>
+      <p-inputMask
+        [(ngModel)]="value"
+        [ngClass]="{ 'ng-invalid ng-dirty': isInvalid() }"
+        [type]="type"
+        [slotChar]="slotChar"
+        [autoClear]="autoClear"
+        [showClear]="showClear"
+        [style]="style"
+        [inputId]="inputId"
+        [styleClass]="styleClass"
+        [placeholder]="placeholder | ngLabelStar:showRequiredStar:ngControl"
+        [size]="size"
+        [maxlength]="maxlength"
+        [tabindex]="tabindex"
+        [title]="title"
+        [ariaLabel]="ariaLabel"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaRequired]="ariaRequired"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [unmask]="unmask"
+        [name]="name"
+        [required]="required"
+        [characterPattern]="characterPattern"
+        [autoFocus]="autoFocus"
+        [autocomplete]="autocomplete"
+        [keepBuffer]="keepBuffer"
+        [mask]="mask"
+        (onComplete)="emitter('onComplete', $event)"
+        (onFocus)="emitter('onFocus', $event)"
+        (onBlur)="_onBlur($event)"
+        (onInput)="_onInput($event)"
+        (onKeydown)="emitter('onKeydown', $event)"
+        (onClear)="_onClear()">
+        <ng-container *ngFor="let t of templates">
+          <ng-template [pTemplate]="t.getType()" *ngIf="templateMap[t.getType()]">
+            <ng-container *ngTemplateOutlet="templateMap[t.getType()]"></ng-container>
+          </ng-template>
+        </ng-container>
+      </p-inputMask>
+      <label *ngIf="label && labelPos == 'float'" [class.p-disabled]="disabled" [attr.for]="inputId">
+        {{ label | ngLabelStar:showRequiredStar:ngControl }}
+      </label>
+    </div>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label && labelPos != 'float'"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

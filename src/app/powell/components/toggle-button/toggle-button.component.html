@@ -1,0 +1,53 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [(fixLabelPos)]="labelPos"
+     [(showRequiredStar)]="showRequiredStar"
+     [ngClass]="{
+      'rtl': rtl,
+      'ltr': !rtl,
+      'label-fix-top': labelPos == 'fix-top',
+      'label-fix-side': labelPos == 'fix-side'
+    }" class="toggle-button-wrapper">
+  <div [ngClass]="{ 'w-100': labelPos == 'fix-top' }" class="field">
+    <p-toggleButton
+      [(ngModel)]="value"
+      [ngClass]="{ 'ng-invalid ng-dirty': isInvalid()}"
+      [onLabel]="onLabel"
+      [offLabel]="offLabel"
+      [onIcon]="onIcon"
+      [offIcon]="offIcon"
+      [ariaLabel]="ariaLabel"
+      [ariaLabelledBy]="ariaLabelledBy"
+      [disabled]="disabled"
+      [style]="style"
+      [styleClass]="styleClass"
+      [inputId]="inputId"
+      [tabindex]="tabindex"
+      [iconPos]="iconPos"
+      (onChange)="_onChange($event)">
+      <ng-container *ngFor="let t of templates">
+        <ng-template [pTemplate]="t.getType()" let-item *ngIf="templateMap[t.getType()]">
+          <ng-container *ngTemplateOutlet="templateMap[t.getType()];context:{$implicit:item}"></ng-container>
+        </ng-template>
+      </ng-container>
+    </p-toggleButton>
+  </div>
+  <label
+    class="fix-label"
+    *ngIf="label"
+    [attr.for]="inputId"
+    [class.p-disabled]="disabled"
+    [style.minWidth.px]="labelPos == 'fix-side' ? labelWidth : null"
+    [style.maxWidth.px]="labelPos == 'fix-side' ? labelWidth : null">
+    {{ label | ngLabelStar:showRequiredStar:ngControl }}
+  </label>
+  <div *ngIf="hint && showHint()" class="message">{{ hint }}</div>
+  <div class="message p-error">
+    <ng-container *ngFor="let v of validation | keyvalue">
+      <div *ngIf="hasError(v.key)">
+        {{ v.value }}
+      </div>
+    </ng-container>
+  </div>
+</div>

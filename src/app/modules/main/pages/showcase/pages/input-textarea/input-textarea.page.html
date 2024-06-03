@@ -1,0 +1,73 @@
+<div class="container">
+  <p-card header="InputTextarea"
+          subheader="InputTextarea is a multi-line text input element."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'filled',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'icon',
+      'labelPos',
+      'iconPos',
+      'addon',
+      'disableConfigChangeEffect',
+      'readonly',
+      'disabled',
+      'maxlength',
+      'placeholder',
+      'rows',
+      'cols',
+      'autoResize',
+      ]"
+      [(label)]="label"
+      [(filled)]="filled"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(icon)]="icon"
+      [(labelPos)]="labelPos"
+      [(iconPos)]="iconPos"
+      [(addon)]="addon"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(readonly)]="readonly"
+      [(disabled)]="disabled"
+      [(maxlength)]="maxlength"
+      [(placeholder)]="placeholder"
+      [(rows)]="rows"
+      [(cols)]="cols"
+      [(autoResize)]="autoResize"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-input-textarea
+        formControlName="c1"
+        [addon]="addon"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [filled]="filled"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [showRequiredStar]="showRequiredStar"
+        [icon]="icon"
+        [labelPos]="labelPos"
+        [iconPos]="iconPos"
+        [disableConfigChangeEffect]="disableConfigChangeEffect"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [maxlength]="maxlength"
+        [placeholder]="placeholder"
+        [rows]="rows"
+        [cols]="cols"
+        [autoResize]="autoResize"
+      ></ng-input-textarea>
+    </form>
+  </p-panel>
+</div>

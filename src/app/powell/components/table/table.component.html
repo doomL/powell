@@ -1,0 +1,541 @@
+<div ngConfigHandler
+     [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+     [(rtl)]="rtl"
+     [ngClass]="{ 'rtl': rtl, 'ltr': !rtl }"
+     class="table-wrapper">
+  <p-table #dataTable
+           [frozenColumns]="frozenColumns"
+           [frozenValue]="frozenValue"
+           [style]="style"
+           styleClass="
+           {{styleClass}}
+           p-datatable-{{size}}
+           p-datatable-{{gridlines ? 'gridlines' : null}}
+           p-datatable-{{striped ? 'striped' : null}}"
+           [tableStyle]="tableStyle"
+           [tableStyleClass]="tableStyleClass"
+           [paginator]="paginator"
+           [pageLinks]="pageLinks"
+           [rowsPerPageOptions]="rowsPerPageOptions"
+           [alwaysShowPaginator]="alwaysShowPaginator"
+           [paginatorPosition]="paginatorPosition"
+           [paginatorStyleClass]="paginatorStyleClass"
+           [paginatorDropdownAppendTo]="paginatorDropdownAppendTo"
+           [paginatorDropdownScrollHeight]="paginatorDropdownScrollHeight"
+           [currentPageReportTemplate]="loading ? '' : currentPageReportTemplate"
+           [showCurrentPageReport]="showCurrentPageReport"
+           [showJumpToPageDropdown]="showJumpToPageDropdown"
+           [showJumpToPageInput]="showJumpToPageInput"
+           [showFirstLastIcon]="showFirstLastIcon"
+           [showPageLinks]="showPageLinks"
+           [defaultSortOrder]="defaultSortOrder"
+           [sortMode]="sortMode"
+           [resetPageOnSort]="resetPageOnSort"
+           [selectionMode]="$any(selectionMode)"
+           [selectionPageOnly]="selectionPageOnly"
+           [contextMenuSelection]="contextMenuSelection"
+           [contextMenuSelectionMode]="contextMenuSelectionMode"
+           [dataKey]="dataKey"
+           [metaKeySelection]="metaKeySelection"
+           [rowSelectable]="rowSelectable"
+           [rowTrackBy]="rowTrackBy"
+           [lazy]="lazy"
+           [lazyLoadOnInit]="lazyLoadOnInit"
+           [compareSelectionBy]="compareSelectionBy"
+           [csvSeparator]="csvSeparator"
+           [exportFilename]="exportFilename"
+           [filters]="filters"
+           [globalFilterFields]="globalFilterFields"
+           [filterDelay]="filterDelay"
+           [filterLocale]="filterLocale"
+           [expandedRowKeys]="expandedRowKeys"
+           [rowExpandMode]="rowExpandMode"
+           [scrollable]="scrollable"
+           [scrollDirection]="scrollDirection"
+           [rowGroupMode]="rowGroupMode"
+           [scrollHeight]="scrollHeight"
+           [virtualScroll]="virtualScroll"
+           [virtualScrollItemSize]="virtualScrollItemSize"
+           [virtualScrollOptions]="virtualScrollOptions"
+           [virtualScrollDelay]="virtualScrollDelay"
+           [frozenWidth]="frozenWidth"
+           [responsive]="responsive"
+           [contextMenu]="contextMenu"
+           [resizableColumns]="resizableColumns"
+           [columnResizeMode]="columnResizeMode"
+           [reorderableColumns]="reorderableColumns"
+           [loading]="loading"
+           [loadingIcon]="loadingIcon"
+           [showLoader]="showLoader"
+           [rowHover]="rowHover"
+           [customSort]="customSort"
+           [showInitialSortBadge]="showInitialSortBadge"
+           [autoLayout]="autoLayout"
+           [exportFunction]="exportFunction"
+           [exportHeader]="exportHeader"
+           [stateKey]="stateKey"
+           [stateStorage]="stateStorage"
+           [groupRowsBy]="groupRowsBy"
+           [groupRowsByOrder]="groupRowsByOrder"
+           [responsiveLayout]="responsiveLayout"
+           [breakpoint]="breakpoint"
+           [paginatorLocale]="paginatorLocale"
+           [value]="items"
+           [columns]="colDef"
+           [first]="first"
+           [rows]="rows"
+           [totalRecords]="totalRecords"
+           [sortField]="sortField"
+           [sortOrder]="sortOrder"
+           [multiSortMeta]="multiSortMeta"
+           [selection]="selection"
+           [selectAll]="selectAll"
+           [virtualRowHeight]="virtualRowHeight"
+           (selectionChange)="onSelectionChange($event)"
+           (selectAllChange)="onSelectAllChange($event)"
+           (onRowSelect)="emitter('onRowSelect',$event)"
+           (onRowUnselect)="emitter('onRowUnselect',$event)"
+           (onSort)="_onSort($event)"
+           (onPage)="emitter('onPage',$event)"
+           (onFilter)="emitter('onFilter',$event)"
+           (onLazyLoad)="_onLazyLoad($event)"
+           (onRowExpand)="emitter('onRowExpand',$event)"
+           (onRowCollapse)="emitter('onRowCollapse',$event)"
+           (onContextMenuSelect)="emitter('onContextMenuSelect',$event)"
+           (onColResize)="emitter('onColResize',$event)"
+           (onColReorder)="emitter('onColReorder',$event)"
+           (onRowReorder)="emitter('onRowReorder',$event)"
+           (onHeaderCheckboxToggle)="emitter('onHeaderCheckboxToggle',$event)"
+           (sortFunction)="emitter('sortFunction',$event)"
+           (firstChange)="onFirstChange($event)"
+           (rowsChange)="onRowsChange($event)"
+           (onStateSave)="emitter('onStateSave',$event)"
+           (onStateRestore)="emitter('onStateRestore',$event)"
+           (contextMenuSelectionChange)="onContextMenuSelectionChange($event)">
+    <ng-template pTemplate="header">
+      <ng-container *ngIf="filterDisplay == 'menu'">
+        <tr>
+          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
+          </th>
+          <th scope="col" *ngFor="let col of colDef"
+              [pSortableColumn]="col.sort && col.field"
+              pReorderableColumn
+              [pReorderableColumnDisabled]="!reorderableColumns">
+            {{ col.header }}
+            <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
+            <ng-button
+              class="sort-reset"
+              [rounded]="true"
+              *ngIf="col.sort && activeSortField == col.field"
+              appearance="text"
+              size="sm"
+              icon="pi pi-sort-alt-slash"
+              (onClick)="onResetSort($event)">
+            </ng-button>
+            <ng-container *ngIf="col.filter as filter">
+              <p-columnFilter [field]="col.field"
+                              display="menu"
+                              [matchMode]="filter.matchMode"
+                              [showApplyButton]="false"
+                              [showMatchModes]="false"
+                              [showOperator]="false"
+                              [showAddButton]="false">
+                <ng-template pTemplate="header">
+                  <div class="filter-header"><span>{{filter.header}}</span></div>
+                </ng-template>
+                <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
+                  <ng-input-text
+                    *ngSwitchCase="'text'"
+                    [value]="value"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-input-text>
+
+                  <ng-input-number
+                    *ngSwitchCase="'numeric'"
+                    (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-input-number>
+
+                  <ng-multi-select
+                    *ngSwitchCase="'multi-select'"
+                    [value]="value"
+                    [options]="filter.options"
+                    [optionLabel]="filter.optionLabel"
+                    [optionValue]="filter.optionValue"
+                    [placeholder]="filter.placeholder"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-multi-select>
+
+                  <ng-dropdown
+                    *ngSwitchCase="'dropdown'"
+                    [value]="value"
+                    [options]="filter.options"
+                    [optionLabel]="filter.optionLabel"
+                    [optionValue]="filter.optionValue"
+                    [placeholder]="filter.placeholder"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-dropdown>
+
+                  <ng-container *ngSwitchCase="'slider'">
+                    <ng-slider
+                      [ngModel]="filter.sliderValue"
+                      [min]="filter.min"
+                      [max]="filter.max"
+                      [range]="filter.range"
+                      (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                    </ng-slider>
+                    <div class="text-center" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
+                  </ng-container>
+
+                  <ng-checkbox
+                    *ngSwitchCase="'boolean'"
+                    [ngModel]="value == 'true' ? true : false"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-checkbox>
+
+                  <ng-gregorian-datepicker
+                    *ngSwitchCase="'gregorian-datepicker'"
+                    [dateFormat]="filter.dateFormat"
+                    (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-gregorian-datepicker>
+                </ng-template>
+              </p-columnFilter>
+            </ng-container>
+          </th>
+          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+            <th class="text-center">{{actionsConfig.header}}</th>
+          </ng-container>
+          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+            <ng-container *ngFor="let action of actionsConfig?.actions">
+              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="filterDisplay == 'row'">
+        <tr>
+          <th scope="col" style="width: 3rem" *ngIf="reorderableRows"></th>
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+            <p-tableHeaderCheckbox *ngIf="selectionMode == 'checkbox'"></p-tableHeaderCheckbox>
+          </th>
+          <th scope="col" *ngFor="let col of colDef"
+              [pSortableColumn]="col.field"
+              pReorderableColumn
+              [pReorderableColumnDisabled]="!reorderableColumns">
+            {{ col.header }}
+            <p-sortIcon *ngIf="col.sort" [field]="col.field"></p-sortIcon>
+          </th>
+          <ng-container *ngIf="actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+            <th>{{actionsConfig.header}}</th>
+          </ng-container>
+          <ng-container *ngIf="!actionsConfig?.inSameColumn && actionsConfig?.actions.length">
+            <ng-container *ngFor="let action of actionsConfig?.actions">
+              <th class="text-center" *ngIf="action.visible ?? true">{{action.header}}</th>
+            </ng-container>
+          </ng-container>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 3rem" *ngIf="selectionMode == 'radio' || selectionMode == 'checkbox'">
+          </th>
+          <th scope="col" class="row-filter-wrapper" *ngFor="let col of colDef">
+            <ng-container *ngIf="col.filter as filter">
+              <p-columnFilter [field]="col.field"
+                              [showMenu]="filter.rowFilterShowMenu"
+                              [matchMode]="filter.matchMode"
+                              [showApplyButton]="false"
+                              [showMatchModes]="false"
+                              [showOperator]="false"
+                              [showAddButton]="false">
+                <ng-template pTemplate="header">
+                  <div class="filter-header"><span>{{filter.header}}</span></div>
+                </ng-template>
+                <ng-template pTemplate="filter" let-value let-filterCallback="filterCallback" [ngSwitch]="filter.type">
+                  <ng-input-text
+                    *ngSwitchCase="'text'"
+                    [value]="value"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-input-text>
+
+                  <ng-input-number
+                    *ngSwitchCase="'numeric'"
+                    (onInput)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-input-number>
+
+                  <ng-multi-select
+                    *ngSwitchCase="'multi-select'"
+                    [value]="value"
+                    [options]="filter.options"
+                    [optionLabel]="filter.optionLabel"
+                    [optionValue]="filter.optionValue"
+                    [placeholder]="filter.placeholder"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-multi-select>
+
+                  <ng-dropdown
+                    *ngSwitchCase="'dropdown'"
+                    [value]="value"
+                    [options]="filter.options"
+                    [optionLabel]="filter.optionLabel"
+                    [optionValue]="filter.optionValue"
+                    [placeholder]="filter.placeholder"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-dropdown>
+
+                  <ng-container *ngSwitchCase="'slider'">
+                    <ng-slider
+                      [ngModel]="filter.sliderValue"
+                      [min]="filter.min"
+                      [max]="filter.max"
+                      [range]="filter.range"
+                      (onSlideEnd)="onChangeFilterValue($event,filterCallback,col)">
+                    </ng-slider>
+                    <div class="text-center mt-3" dir="ltr">{{filter.sliderValue[0]}} - {{filter.sliderValue[1]}}</div>
+                  </ng-container>
+
+                  <ng-checkbox
+                    *ngSwitchCase="'boolean'"
+                    [ngModel]="value == 'true' ? true : false"
+                    (onChange)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-checkbox>
+
+                  <ng-gregorian-datepicker
+                    *ngSwitchCase="'gregorian-datepicker'"
+                    [dateFormat]="filter.dateFormat"
+                    (onSelect)="onChangeFilterValue($event,filterCallback,col)">
+                  </ng-gregorian-datepicker>
+                </ng-template>
+              </p-columnFilter>
+            </ng-container>
+          </th>
+          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
+            <th></th>
+          </ng-container>
+          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
+            <th *ngFor="let action of actionsConfig.actions"></th>
+          </ng-container>
+        </tr>
+      </ng-container>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-item let-frozen="frozen" let-index="rowIndex">
+      <ng-container *ngIf="bodyTemplate; else defaultBodyTemplate">
+        <ng-container *ngTemplateOutlet="bodyTemplate;context:{$implicit:item,frozen,index}"></ng-container>
+      </ng-container>
+      <ng-template #defaultBodyTemplate>
+        <tr [pReorderableRow]="index"
+            [pReorderableRowDisabled]="!reorderableRows"
+            [pSelectableRow]="item"
+            [pSelectableRowDisabled]="!selectionMode"
+            [pSelectableRowIndex]="index">
+          <td *ngIf="reorderableRows">
+            <span class="pi pi-bars"></span>
+          </td>
+          <td *ngIf="selectionMode == 'radio'">
+            <p-tableRadioButton [value]="item"></p-tableRadioButton>
+          </td>
+          <td *ngIf="selectionMode == 'checkbox'">
+            <p-tableCheckbox [value]="item"></p-tableCheckbox>
+          </td>
+          <td *ngFor="let col of colDef"
+              [ngClass]="handleCellStyleClass(col.cellStyleClass,item)"
+              [ngStyle]="handleCellStyle(col.cellStyle,item)">
+            <ng-container [ngSwitch]="col.render?.as">
+              <ng-image
+                *ngSwitchCase="'image'"
+                imageClass="image-cell"
+                [preview]="col.render.preview"
+                [width]="col.render.width || '100px'"
+                [height]="col.render.height"
+                [src]="resolveFieldData(item, col.field)">
+              </ng-image>
+              <ng-container *ngSwitchCase="'ng-template'">
+                <ng-container *ngTemplateOutlet="cellTemplates[col.field];context:{$implicit:item}"></ng-container>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <span [innerHTML]="handleCellRenderer(col,item)"></span>
+              </ng-container>
+            </ng-container>
+          </td>
+          <ng-container *ngIf="actionsConfig && actionsConfig.inSameColumn">
+            <td class="same-column-actions-wrapper">
+              <div>
+                <ng-container *ngFor="let action of actionsConfig.actions">
+                  <ng-button
+                    *ngIf="handleActionVisibility(action,item)"
+                    [icon]="action.icon"
+                    [label]="action.label"
+                    [appearance]="action.appearance"
+                    [iconPos]="action.iconPos"
+                    [rounded]="action.rounded"
+                    [async]="action.async"
+                    [full]="action.full"
+                    [styleClass]="action.styleClass"
+                    [color]="action.color"
+                    [size]="action.size"
+                    [pTooltip]="action.tooltip"
+                    [tooltipPosition]="action.tooltipPosition ?? 'top'"
+                    (onClick)="action.onClick(item,index,$event)"
+                    (onClickAsync)="action.onClickAsync(item,index,$event)">
+                  </ng-button>
+                </ng-container>
+              </div>
+            </td>
+          </ng-container>
+          <ng-container *ngIf="actionsConfig && !actionsConfig.inSameColumn">
+            <td class="action-wrapper" *ngFor="let action of actionsConfig.actions">
+              <ng-button
+                *ngIf="handleActionVisibility(action,item)"
+                [icon]="action.icon"
+                [label]="action.label"
+                [appearance]="action.appearance"
+                [iconPos]="action.iconPos"
+                [rounded]="action.rounded"
+                [async]="action.async"
+                [full]="action.full"
+                [styleClass]="action.styleClass"
+                [color]="action.color"
+                [size]="action.size"
+                [pTooltip]="action.tooltip"
+                [tooltipPosition]="action.tooltipPosition ?? 'top'"
+                (onClick)="action.onClick(item,index,$event)"
+                (onClickAsync)="action.onClickAsync(item,index,$event)">
+              </ng-button>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-template>
+    </ng-template>
+
+    <ng-template pTemplate="caption" *ngIf="captionTemplate || header">
+      <ng-container *ngIf="captionTemplate;else defaultCaption">
+        <ng-container *ngTemplateOutlet="captionTemplate"></ng-container>
+      </ng-container>
+      <ng-template #defaultCaption>
+        <div class="caption">
+          <h5>{{header}}</h5>
+          <ng-input-text
+            *ngIf="globalFilter"
+            [placeholder]="globalFilterPlaceholder"
+            icon="pi pi-search"
+            (onKeyDown)="onGlobalFilterChange($event)">
+          </ng-input-text>
+        </div>
+      </ng-template>
+    </ng-template>
+    <ng-template pTemplate="headergrouped"
+                 let-item
+                 let-rowIndex="rowIndex"
+                 let-columns="columns"
+                 let-editing="editing"
+                 let-frozen="frozen"
+                 *ngIf="headerGroupedTemplate">
+      <ng-container *ngTemplateOutlet="headerGroupedTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="header" let-item *ngIf="headerTemplate">
+      <ng-container *ngTemplateOutlet="headerTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="loadingbody" let-rowspan="rowspan" let-rowgroup="rowgroup" *ngIf="loadingBodyTemplate">
+      <ng-container *ngTemplateOutlet="loadingBodyTemplate;context:{rowspan,rowgroup}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="footer" let-item *ngIf="footerTemplate">
+      <ng-container *ngTemplateOutlet="footerTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="footergrouped" let-item *ngIf="footerGroupedTemplate">
+      <ng-container *ngTemplateOutlet="footerGroupedTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="colgroup" let-item *ngIf="colGroupTemplate">
+      <ng-container *ngTemplateOutlet="colGroupTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="summary" *ngIf="summaryTemplate">
+      <ng-container *ngTemplateOutlet="summaryTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="rowexpansion" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded" *ngIf="rowExpansionTemplate">
+      <ng-container *ngTemplateOutlet="rowExpansionTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="groupheader" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupHeaderTemplate">
+      <ng-container *ngTemplateOutlet="groupHeaderTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="groupfooter" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="groupFooterTemplate">
+      <ng-container *ngTemplateOutlet="groupFooterTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="frozenheader" *ngIf="frozenHeaderTemplate">
+      <ng-container *ngTemplateOutlet="frozenHeaderTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="frozenbody" let-item let-rowIndex="rowIndex" let-columns="columns" let-editing="editing" let-frozen="frozen" *ngIf="frozenBodyTemplate">
+      <ng-container *ngTemplateOutlet="frozenBodyTemplate;context:{$implicit:item,rowIndex,columns,editing,frozen}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="frozenfooter" *ngIf="frozenFooterTemplate">
+      <ng-container *ngTemplateOutlet="frozenFooterTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="frozencolgroup" *ngIf="frozenColGroupTemplate">
+      <ng-container *ngTemplateOutlet="frozenColGroupTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="frozenexpandedrow" let-rowspan="rowspan" let-rowgroup="rowgroup" let-expanded="expanded" *ngIf="frozenColGroupTemplate">
+      <ng-container *ngTemplateOutlet="frozenColGroupTemplate;context:{rowspan,rowgroup,expanded}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft" *ngIf="paginatorLeftTemplate">
+      <ng-container *ngTemplateOutlet="paginatorLeftTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatorright" *ngIf="paginatorRightTemplate">
+      <ng-container *ngTemplateOutlet="paginatorRightTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatordropdownicon" *ngIf="paginatorDropdownIconTemplate">
+      <ng-container *ngTemplateOutlet="paginatorDropdownIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatordropdownitem" *ngIf="paginatorDropdownItemTemplate">
+      <ng-container *ngTemplateOutlet="paginatorDropdownItemTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatorfirstpagelinkicon" *ngIf="paginatorFirstPageLinkIconTemplate">
+      <ng-container *ngTemplateOutlet="paginatorFirstPageLinkIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatorlastpagelinkicon" *ngIf="paginatorLastPageLinkIconTemplate">
+      <ng-container *ngTemplateOutlet="paginatorLastPageLinkIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatorpreviouspagelinkicon" *ngIf="paginatorPreviousPageLinkIconTemplate">
+      <ng-container *ngTemplateOutlet="paginatorPreviousPageLinkIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="paginatornextpagelinkicon" *ngIf="paginatorNextPageLinkIconTemplate">
+      <ng-container *ngTemplateOutlet="paginatorNextPageLinkIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="loadingicon" *ngIf="loadingIconTemplate">
+      <ng-container *ngTemplateOutlet="loadingIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="reorderindicatorupicon" *ngIf="reorderIndicatorUpIconTemplate">
+      <ng-container *ngTemplateOutlet="reorderIndicatorUpIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="reorderindicatordownicon" *ngIf="reorderIndicatorDownIconTemplate">
+      <ng-container *ngTemplateOutlet="reorderIndicatorDownIconTemplate"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="sorticon" let-item *ngIf="sortIconTemplate">
+      <ng-container *ngTemplateOutlet="sortIconTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="checkboxicon" let-item let-partialSelected="partialSelected" *ngIf="checkboxIconTemplate">
+      <ng-container *ngTemplateOutlet="checkboxIconTemplate;context:{$implicit:item,partialSelected}"></ng-container>
+    </ng-template>
+    <ng-template pTemplate="headercheckboxicon" let-item *ngIf="headerCheckboxIconTemplate">
+      <ng-container *ngTemplateOutlet="headerCheckboxIconTemplate;context:{$implicit:item}"></ng-container>
+    </ng-template>
+
+    <ng-template let-columns let-frozen="frozen" pTemplate="emptymessage">
+      <ng-container *ngIf="emptyMessageTemplate;else defaultEmptyMessage">
+        <ng-container *ngTemplateOutlet="emptyMessageTemplate;context:{columns,frozen}"></ng-container>
+      </ng-container>
+      <ng-template #defaultEmptyMessage>
+        <tr>
+          <td class="empty-message-wrapper"
+              [attr.colspan]="columns.length +
+              (actionsConfig?.inSameColumn ? 1 : actionsConfig?.actions?.length) +
+              (selectableRows && (selectionMode == 'checkbox' || selectionMode == 'radio') ? 1 : 0)">
+            <ng-empty [title]="emptyMessage"
+                      [icon]="emptyIcon"
+                      [imageSrc]="emptyImageSrc"
+                      [imageType]="emptyImageType">
+            </ng-empty>
+          </td>
+        </tr>
+      </ng-template>
+    </ng-template>
+  </p-table>
+</div>
+<!--<p-contextMenu #cm [model]="contextMenuItems" appendTo="body"></p-contextMenu>-->

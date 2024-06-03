@@ -1,0 +1,54 @@
+<div class="container">
+  <p-card header="Dialog"
+          subheader="Dialog is a container to display content in an overlay window."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'header',
+      'draggable',
+      'resizable',
+      'modal',
+      'dialogPosition',
+      'blockScroll',
+      'closeOnEscape',
+      'dismissableMask',
+      'closable',
+      'showHeader',
+      'maximizable',
+      'buttonIcon',
+      'buttonIconPos',
+      'buttonFull',
+      'buttonLabel',
+      'buttonColor',
+      'buttonAppearance',
+      'buttonSize',
+      'rtl',
+      'content',
+      ]"
+      [(header)]="dialog.header"
+      [(draggable)]="dialog.draggable"
+      [(resizable)]="dialog.resizable"
+      [(modal)]="dialog.modal"
+      [(dialogPosition)]="dialog.position"
+      [(blockScroll)]="dialog.blockScroll"
+      [(closeOnEscape)]="dialog.closeOnEscape"
+      [(dismissableMask)]="dialog.dismissableMask"
+      [(closable)]="dialog.closable"
+      [(showHeader)]="dialog.showHeader"
+      [(maximizable)]="dialog.maximizable"
+      [(buttonIcon)]="dialog.buttonIcon"
+      [(buttonIconPos)]="dialog.buttonIconPos"
+      [(buttonFull)]="dialog.buttonFull"
+      [(buttonLabel)]="dialog.buttonLabel"
+      [(buttonColor)]="dialog.buttonColor"
+      [(buttonAppearance)]="dialog.buttonAppearance"
+      [(buttonSize)]="dialog.buttonSize"
+      [(rtl)]="dialog.rtl"
+      [(content)]="dialog.content"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button (click)="showDialog()" label="Open Dialog"></ng-button>
+  </p-panel>
+</div>

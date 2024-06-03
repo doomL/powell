@@ -1,0 +1,7 @@
+:host {
+  display: inline-block;
+
+  div:not(.navigation-disabled) {
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="container">
+  <p-card header="ConfirmPopup"
+          subheader="ConfirmPopup displays a confirmation overlay displayed relatively to its target."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'icon',
+      'acceptLabel',
+      'rejectLabel',
+      'acceptIcon',
+      'rejectIcon',
+      'acceptVisible',
+      'rejectVisible',
+      'acceptColor',
+      'acceptAppearance',
+      'buttonSize',
+      'rejectColor',
+      'rejectAppearance',
+      'buttonFull',
+      'defaultFocus',
+      'rtl',
+      ]"
+      [(icon)]="confirmPopup.icon"
+      [(acceptLabel)]="confirmPopup.acceptLabel"
+      [(rejectLabel)]="confirmPopup.rejectLabel"
+      [(acceptIcon)]="confirmPopup.acceptIcon"
+      [(rejectIcon)]="confirmPopup.rejectIcon"
+      [(acceptVisible)]="confirmPopup.acceptVisible"
+      [(rejectVisible)]="confirmPopup.rejectVisible"
+      [(acceptColor)]="confirmPopup.acceptColor"
+      [(acceptAppearance)]="confirmPopup.acceptAppearance"
+      [(buttonSize)]="confirmPopup.buttonSize"
+      [(rejectColor)]="confirmPopup.rejectColor"
+      [(rejectAppearance)]="confirmPopup.rejectAppearance"
+      [(buttonFull)]="confirmPopup.buttonFull"
+      [(defaultFocus)]="confirmPopup.defaultFocus"
+      [(rtl)]="confirmPopup.rtl"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <ng-button (click)="showConfirmPopup($event)" label="Open Dialog Popup"></ng-button>
+  </p-panel>
+</div>

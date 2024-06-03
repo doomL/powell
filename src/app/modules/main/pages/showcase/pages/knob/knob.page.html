@@ -1,0 +1,74 @@
+<div class="container">
+  <p-card header="Knob"
+          subheader="Knob is a form component to define number inputs with a dial."></p-card>
+  <p-panel [header]="'options' | translate">
+    <ng-preview-options
+      [previewItems]="[
+      'label',
+      'labelWidth',
+      'hint',
+      'rtl',
+      'showRequiredStar',
+      'fixLabelPos',
+      'disableConfigChangeEffect',
+      'numericSize',
+      'disabled',
+      'readonly',
+      'step',
+      'min',
+      'max',
+      'valueColor',
+      'rangeColor',
+      'textColor',
+      'strokeWidth',
+      'showValue',
+      'valueTemplate',
+      ]"
+      [(label)]="label"
+      [(labelWidth)]="labelWidth"
+      [(hint)]="hint"
+      [(rtl)]="rtl"
+      [(showRequiredStar)]="showRequiredStar"
+      [(fixLabelPos)]="labelPos"
+      [(disableConfigChangeEffect)]="disableConfigChangeEffect"
+      [(numericSize)]="size"
+      [(disabled)]="disabled"
+      [(readonly)]="readonly"
+      [(step)]="step"
+      [(min)]="min"
+      [(max)]="max"
+      [(valueColor)]="valueColor"
+      [(rangeColor)]="rangeColor"
+      [(textColor)]="textColor"
+      [(strokeWidth)]="strokeWidth"
+      [(showValue)]="showValue"
+      [(valueTemplate)]="valueTemplate"
+    ></ng-preview-options>
+  </p-panel>
+
+  <p-panel [header]="'preview' | translate">
+    <form [formGroup]="form">
+      <ng-knob
+        formControlName="c1"
+        [validation]="{ required: 'error' }"
+        [label]="label"
+        [labelWidth]="labelWidth"
+        [hint]="hint"
+        [rtl]="rtl"
+        [labelPos]="labelPos"
+        [size]="size"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [step]="step"
+        [min]="min"
+        [max]="max"
+        [valueColor]="valueColor"
+        [rangeColor]="rangeColor"
+        [textColor]="textColor"
+        [strokeWidth]="strokeWidth"
+        [showValue]="showValue"
+        [valueTemplate]="valueTemplate"
+      ></ng-knob>
+    </form>
+  </p-panel>
+</div>
